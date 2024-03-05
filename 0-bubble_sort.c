@@ -1,17 +1,19 @@
 #include "sort.h"
+#include <stdio.h>
+#include <stddef.h>
 
 /**
- * swap_ints - Swap two integers in an array.
- * @a: The first integer to swap.
- * @b: The second integer to swap.
+ * swap_func - Swaps two integers in the array.
+ * @back: The first integer to be swaped.
+ * @front: The second integer to be swaped.
  */
-void swap_ints(int *a, int *b)
+void swap_func(int *back, int *front)
 {
-	int tmp;
+	int temp;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	temp = *back;
+	*back = *front;
+	*front = temp;
 }
 
 /**
@@ -19,28 +21,29 @@ void swap_ints(int *a, int *b)
  * @array: An array of integers to sort.
  * @size: The size of the array.
  *
- * Description: Prints the array after each swap.
+ * Description: Prints the array after each swap step is completed.
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, len = size;
-	bool bubbly = false;
+	size_t prev;
+	size_t next = size;
+	bool is_done = false;
 
 	if (array == NULL || size < 2)
 		return;
 
-	while (bubbly == false)
+	while (is_done == false)
 	{
-		bubbly = true;
-		for (i = 0; i < len - 1; i++)
+		is_done = true;
+		for (prev = 0; prev < next - 1; prev++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[prev] > array[prev + 1])
 			{
-				swap_ints(array + i, array + i + 1);
+				swap_func(array + prev, array + prev + 1);
 				print_array(array, size);
-				bubbly = false;
+				is_done = false;
 			}
 		}
-		len--;
+		next--;
 	}
 }
