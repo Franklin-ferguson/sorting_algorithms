@@ -37,19 +37,15 @@ void selection_sort(int *array, size_t size)
 
 	for (temp = 0; temp < end - 1; temp++)
 	{
-		size_t final = temp;
+		int *final = array + temp;
 
 		for (current = temp + 1; current < end; current++)
 		{
-			if (array[current] < array[final])
-			{
-				final = current;
-				continue;
-			}
+			final = (array[current] < *final) ? (array + current) : final;
 		}
-		if (final != 1)
+		if ((array + temp) != final)
 		{
-			swap_func(array + temp, array + final);
+			swap_func(array + temp, final);
 			print_array(array, size);
 		}
 	}
