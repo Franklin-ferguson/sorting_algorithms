@@ -26,7 +26,7 @@ void swap_func(int *a, int *b)
  */
 void selection_sort(int *array, size_t size)
 {
-	size_t current = 0;
+	size_t current;
 	size_t temp;
 	size_t end = size;
 
